@@ -4,5 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+chrono = "0.4.41"
 clap = { version = "4.5.39", features = ["derive"] }
+indicatif = "0.17.11"
 rand = "0.8.5"

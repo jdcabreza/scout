@@ -1,5 +1,8 @@
 use clap::{CommandFactory, Parser, Subcommand};
 
+mod commands;
+use commands::pomodoro::*;
+
 #[derive(Parser)] // Autogenerates code to parse CLI args into the Cli struct
 #[command(
     name = "Scout", 
@@ -23,6 +26,11 @@ enum Commands {
     Done,
     /// Let Scout help you plan your day or week
     Plan,
+    /// Run a Pomodoro!
+    Pomodoro {
+        #[arg(long, help = "Task to work on during your Pomodoro")]
+        task: String,
+    },
     /// Let Scout help you review your day or week
     Review,
     /// Show your planned tasks
@@ -45,6 +53,10 @@ fn main() {
         Some(Commands::Plan) => {
             println!("🧠 Let's start your planning session...");
             // Insert logic for planning here
+        }   
+        Some(Commands::Pomodoro {task   }) => {
+            println!("😤 Let's get your Pomodoro started...");
+            start_pomodoro(task);
         }
         Some(Commands::Review) => {
             println!("🔍 Let's review how you did today:");
